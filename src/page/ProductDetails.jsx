@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactImageMagnify from "react-image-magnify";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import Swal from "sweetalert2";
-import { Quintity } from "../Shera/utility";
+import { addToDb } from "../Shera/utility";
 const ProductDetails = () => {
   const [details, setDetails] = useState({});
   const [img, setImg] = useState("");
   const { id } = useParams();
-
+  const navigate = useNavigate()
   useEffect(() => {
     axios
       .get(`https://dummyjson.com/products/${id}`)
@@ -34,8 +34,9 @@ const ProductDetails = () => {
     })
       .then((res) => res.json())
       .then(data => {
-        Quintity(id)
+        addToDb(id)
         if(data.total>0){
+        navigate("/cart");
           Swal.fire({
             position: "center",
             icon: "success",

@@ -1,28 +1,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCrad from "./productCrad";
+import Loading from "../Shera/Loading/Loading";
 
 const Products = () => {
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products")
-      // .get("https://dummyjson.com/products")
-      .then((res) => setProducts(res.data.products));
+    axios.get("https://dummyjson.com/products").then((res) => {
+      setProducts(res.data.products);
+      setLoading(false);
+    });
   }, []);
   const searchFunction = (search, products) => {
     let allProducts = products;
     if (search) {
       allProducts = allProducts.filter(
-        ({ title,price }) =>
-          (title && title.toLowerCase().includes(search.toLowerCase()))||
+        ({ title, price }) =>
+          (title && title.toLowerCase().includes(search.toLowerCase())) ||
           (price && price.toString().includes(search))
       );
     }
     return allProducts;
   };
-console.log(products.length);
   const allProducts = searchFunction(search, products);
   return (
     <div className="w-11/12 my-5 md:my-10 mx-auto">
@@ -41,11 +42,15 @@ console.log(products.length);
           className="w-[80%] py-2 px-2 bg-transparent border-none outline-none text-white text-lg"
         />
       </div>
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {allProducts?.map((product) => (
-          <ProductCrad key={product.id} product={product} />
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {allProducts?.map((product) => (
+            <ProductCrad key={product.id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

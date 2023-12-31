@@ -1,33 +1,44 @@
-const Quintity = (id) => {
-    let quintityAdd = {};
-    // chack the local storage item
-    const chackQuinitity = localStorage.getItem('cart')
-    if(chackQuinitity){
-          quintityAdd = JSON.parse(chackQuinitity)
-    }
-    else{
-          quintityAdd ={}
-    }
-    // add to local Storage 
-    const localDb = quintityAdd[id];
-    if(localDb){
-          quintityAdd[id] = localDb + 1;
-    }
-    else{
-          quintityAdd[id] = 1
-    }
-    localStorage.setItem('cart', JSON.stringify(quintityAdd))
-}
-// remoce the  local storage item 
-const QuintityRemove = id => {
-    const deleteItem = localStorage.getItem('cart')
-    if(deleteItem){
-          const newDelet = JSON.parse(deleteItem)
-          if(id in newDelet){
-                delete newDelet[id]
-                localStorage.setItem('cart',JSON.stringify(newDelet))
-          }
-    }
-
-}
-export { Quintity, QuintityRemove }
+// use local storage to manage cart data
+const addToDb = id => {
+      let shoppingCart = getShoppingCart();
+      // add quantity
+      const quantity = shoppingCart[id];
+      if (!quantity) {
+          shoppingCart[id] = 1;
+      }
+      else {
+          const newQuantity = quantity + 1;
+          shoppingCart[id] = newQuantity;
+      }
+      localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+  }
+  
+  const removeFromDb = id => {
+      const shoppingCart = getShoppingCart();
+      if (id in shoppingCart) {
+          delete shoppingCart[id];
+          localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+      }
+  }
+  
+  const getShoppingCart = () => {
+      let shoppingCart = {};
+  
+      //get the shopping cart from local storage
+      const storedCart = localStorage.getItem('shopping-cart');
+      if (storedCart) {
+          shoppingCart = JSON.parse(storedCart);
+      }
+      return shoppingCart;
+  }
+  
+  const deleteShoppingCart = () => {
+      localStorage.removeItem('shopping-cart');
+  }
+  
+  export {
+      addToDb,
+      removeFromDb,
+      getShoppingCart,
+      deleteShoppingCart
+  }
