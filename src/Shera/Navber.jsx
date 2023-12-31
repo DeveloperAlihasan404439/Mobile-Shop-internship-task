@@ -3,10 +3,7 @@ import useAuth from "./Auth/useAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
 import phone from "../assets/images/phone.png"
 const Navber = () => {
-    const {user,logOut} = useAuth()
-    // const { usersdata } = useUsers();
-    // const dashboard = usersdata?.find((roll) => roll.email === user?.email);
-  
+    const {user,logOut} = useAuth()  
     return (
       <div
         className={`border-b border-[#e92121] shadow sticky top-0 left-0 z-30`}

@@ -2,16 +2,17 @@ import { updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useAuth from "./useAuth";
 
 const SignUp = () => {
   const [open, setOpen] = useState(true);
-  const { googleLogin, createUser, logout } = useAuth();
+  const { googleUser, createUser, logOut } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const location = useLocation()
   const onSubmit = (data) => {
     const name = data.name;
     const photo = data.photo;
@@ -22,14 +23,14 @@ const SignUp = () => {
         displayName: name,
         photoURL: photo,
       }).then((result) => {
-        logout();
+        logOut();
         navigate("/login");
         Swal.fire({
           position: "center",
           icon: "success",
           title: "Successfull Create User",
           showConfirmButton: false,
-          background: "#07163d",
+          background: '#471B1B',
           color: "white",
           timer: 2000,
         });
@@ -37,6 +38,25 @@ const SignUp = () => {
     });
     reset();
   };
+
+  const googleLogin = ()=>{
+    googleUser()
+    .then(result =>{
+      if(result){
+        navigate(location?.state ? location?.state : "/");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfull Create User",
+            showConfirmButton: false,
+            background: '#471B1B',
+            color: "white",
+            timer: 2000,
+          });
+
+      }
+    })
+  }
   return (
     <div className="flex items-center justify-center h-[90vh]">
       <div

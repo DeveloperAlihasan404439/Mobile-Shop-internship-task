@@ -5,13 +5,14 @@ const ProductCrad = ({product}) => {
     return (
         <div className=" rounded-lg bg-gray-300">
             <img src={thumbnail} alt="" className="w-full h-[400px] rounded-t-lg"/>
-            <div className="mt-4 px-4">
+            <div className="py-6 px-4 text-white" style={{background: 'radial-gradient(circle,rgb(243, 23, 23) 0%,rgb(27, 27, 27)  100%)'}}>
             <h1 className=" text-xl text-center ">{title}</h1>
             <h1 className=" text-lg "> Brnad :{brand}</h1>
             <h1 className=" text-lg  ">Price : ${price}</h1>
             </div>
             <Link to={`/details/${id}`}>
-            <button className="py-2 px-5 mt-5 bg-[#07163d] hover:bg-[#01040a] w-full text-white rounded-b">Show Details</button>
+            <button className="py-3 text-lg px-5  w-full text-white rounded-b border-t border-black/60"
+            style={{background: 'radial-gradient(circle, rgb(243, 23, 23) 0%, rgb(27, 27, 27) 100%)'}}>Show Details</button>
             </Link>
         </div>
     );

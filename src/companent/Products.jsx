@@ -8,6 +8,7 @@ const Products = () => {
   useEffect(() => {
     axios
       .get("https://dummyjson.com/products")
+      // .get("https://dummyjson.com/products")
       .then((res) => setProducts(res.data.products));
   }, []);
   const searchFunction = (search, products) => {
@@ -21,6 +22,7 @@ const Products = () => {
     }
     return allProducts;
   };
+console.log(products.length);
   const allProducts = searchFunction(search, products);
   return (
     <div className="w-11/12 my-5 md:my-10 mx-auto">

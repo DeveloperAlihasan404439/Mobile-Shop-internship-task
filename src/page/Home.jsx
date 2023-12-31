@@ -5,7 +5,6 @@ import Products from "../companent/Products";
 
 const Home = () => {
     const {user} = useContext(authContext)
-    console.log(user);
     return (
         <div>
             <Banner/>

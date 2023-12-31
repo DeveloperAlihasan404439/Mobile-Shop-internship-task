@@ -2,14 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "./useAuth";
 import { useForm } from "react-hook-form";
-import useAxios from "../Hooks/useAxios";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 const Login = () => {
-    const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true);
   const { loginUser, googleUser } = useAuth();
-  const axiosSecure = useAxios();
   const location = useLocation();
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
@@ -17,49 +15,41 @@ const Login = () => {
     loginUser(data.email, data.password).then((result) => {
       reset();
       if (result.user) {
+        fetch("https://dummyjson.com/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(
+            {
+              username: 'kminchelle',
+              password: '0lelplR',
+            }),
+        }) 
+          .then((res) => res.json())
+          .then(data=>console.log(data))
+
         navigate(location?.state ? location?.state : "/");
         Swal.fire({
           position: "center",
           icon: "success",
           title: "Successfull Login User",
           showConfirmButton: false,
-          background: "#07163d",
+          background: "#471B1B",
           color: "white",
           timer: 2000,
-        });
+        }); 
       }
     });
   };
   const googleLogin = () => {
     googleUser().then((result) => {
       if (result?.user) {
-        console.log(result.user);
-        const userInfo = {
-          email: result.user?.email,
-          name: result.user?.displayName,
-          photo: result.user?.photoURL,
-        };
-        axiosSecure.post("/usersdata", userInfo).then((res) => {
-          if (res.data.insertedId) {
-            navigate(location?.state ? location?.state : "/"); 
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Successfull Google Login",
-              showConfirmButton: false,
-              background: "#07163d",
-              color: "white",
-              timer: 2000,
-            });
-          }
-        });
-        navigate(location?.state ? location?.state : "/"); 
+        navigate(location?.state ? location?.state : "/");
         Swal.fire({
           position: "center",
           icon: "success",
           title: "Successfull Google Login",
           showConfirmButton: false,
-          background: "#07163d",
+          background: "#471B1B",
           color: "white",
           timer: 2000,
         });
@@ -68,7 +58,13 @@ const Login = () => {
   };
   return (
     <div className="flex items-center justify-center h-[90vh]">
-      <div className="w-full max-w-md p-8 space-y-3 rounded-xl" style={{background: 'radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)'}}>
+      <div
+        className="w-full max-w-md p-8 space-y-3 rounded-xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)",
+        }}
+      >
         <h1 className="text-2xl font-bold text-center text-white">Login</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
           <div className="space-y-1 text-sm">
@@ -131,6 +127,5 @@ const Login = () => {
     </div>
   );
 };
-
 
 export default Login;
