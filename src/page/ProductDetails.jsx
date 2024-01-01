@@ -17,7 +17,7 @@ const ProductDetails = () => {
   }, [id]);
   const { thumbnail, title, brand, description, price, stock, images } =
     details;
-
+console.log(details);
   const heandelAddCrat = (id) => {
     fetch("https://dummyjson.com/carts/add", {
       method: "POST",

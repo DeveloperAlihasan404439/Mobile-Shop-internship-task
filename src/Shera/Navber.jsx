@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 import useAuth from "./Auth/useAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
 import phone from "../assets/images/phone.png";
-import { FaShoppingCart } from "react-icons/fa";
-// import useCrats from "./Hooks/useCrats";
 const Navber = () => {
   const { user, logOut } = useAuth();
-  // const {crat} = useCrats()
   return (
     <div
       className={`border-b border-[#e92121] shadow sticky top-0 left-0 z-30`}
@@ -61,7 +58,7 @@ const Navber = () => {
                         to="/cart"
                         className="py-1 px-5 bg-[#07163d] text-center hover:bg-[#01040a] rounded"
                       >
-                        All Product
+                        Cart
                       </Link>
 
                       <button
@@ -79,11 +76,12 @@ const Navber = () => {
                       >
                         Home
                       </Link>
+                      <Link to="/">Home</Link>
                       <Link
-                        to="/allProducts"
+                        to="/cart"
                         className="py-1 px-5 text-center bg-[#07163d] hover:bg-[#01040a] rounded"
                       >
-                        All Product
+                        Cart
                       </Link>
                       <Link
                         to="/login"
@@ -118,19 +116,6 @@ const Navber = () => {
           <ul className="w-full flex gap-3 items-center justify-end text-lg">
             <Link to="/">Home</Link>
             <Link to="/cart">Cart</Link>
-            {/* <Link
-              to="/cart"
-              className="py-1 px-5 rounded"
-            >
-              <div className="relative bg-[#07163d] px-3 rounded">
-                <button className="py-1 pr-4 text-xl flex justify-start text-white rounded">
-                  <FaShoppingCart className="text-3xl"/>
-                </button>
-                <span className="absolute top-0 right-0 ">
-                  {crat?crat.length:0}+
-                </span>
-              </div>
-            </Link> */}
             {user ? (
               <>
                 <div className=" border border-[#01040a] rounded-[50%] w-[40px] h-[40px]">

@@ -31,7 +31,10 @@ const CartsData = () => {
             <h1>Price</h1>
             </div>
           {
-            crat?.map((data,index) => <div key={index} className="w-full py-2 border-b border-red-600 flex justify-between px-10">
+            crat?.map((data,index) => <div key={index} className="w-full py-2 border-b text-white flex justify-between px-10" style={{
+              background:
+                "radial-gradient(circle,rgb(27, 27, 27) 0%,  rgb(243, 23, 23) 100%)",
+            }}>
                 <h1>{data.title}</h1>
                 <h1>{data.brand}</h1>
                 <h1>${data.price}</h1>

@@ -5,6 +5,7 @@ import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
 import ProductDetails from "../../page/ProductDetails";
 import CartsData from "../../page/CartsData";
+import Privete from "../Auth/Privete";
 
 export const routers = createBrowserRouter([
     {
@@ -13,15 +14,15 @@ export const routers = createBrowserRouter([
       children: [
         {
           path: '/',
-          element: <Home/>
+          element: <Privete><Home/></Privete>
         },
         {
           path: '/details/:id',
-          element: <ProductDetails/>
+          element: <Privete><ProductDetails/></Privete>
         },
         {
           path: '/cart',
-          element: <CartsData/>
+          element: <Privete><CartsData/></Privete>
         },
         {
           path: '/singup',
