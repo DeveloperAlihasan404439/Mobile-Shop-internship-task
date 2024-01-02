@@ -1,4 +1,4 @@
-## Web site name : Mobile Shop [Live Link](https:/build-with-innovation-private-limited-task.surge.sh/) [Github Link](https://github.com/DeveloperAlihasan404439/Mobile-Shop-internship-task)
+## Web site name : Mobile Shop [Live Link](https://build-with-innovation-private-limited-task.surge.sh) [Github Link](https://github.com/DeveloperAlihasan404439/Mobile-Shop-internship-task)
 
 I would like to explain everything in the assignment task given by you.
 
