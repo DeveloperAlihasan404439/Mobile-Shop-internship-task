@@ -28,7 +28,7 @@ const Products = () => {
   return (
     <div className="w-11/12 my-5 md:my-10 mx-auto">
       <div
-        className="w-4/12 mx-auto flex items-center mb-5 rounded-lg"
+        className="w-11/12 md:w-4/12 mx-auto flex items-center mb-5 rounded-lg"
         style={{
           background:
             "radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)",
