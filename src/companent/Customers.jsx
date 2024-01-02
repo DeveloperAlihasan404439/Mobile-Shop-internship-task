@@ -1,9 +1,17 @@
+import { useState } from 'react';
+import CountUp from 'react-countup';
+import ScrollTrigger from 'react-scroll-trigger';
 const Customers = () => {
+  const [counup, setCount] = useState(false)
   return (
     <section className="p-6 my-6  ">
+      <ScrollTrigger onEnter={()=>setCount(true)} onExit={()=>setCount(false)}>
       <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
         <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  ">
-          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 ">
+          <div className="flex justify-center p-2 align-middle text-white rounded-lg sm:p-4 " style={{
+        background:
+          "radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)",
+      }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -16,12 +24,15 @@ const Customers = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center align-middle">
-            <p className="text-3xl font-semibold leadi">200</p>
+            <p className="text-3xl font-semibold leadi">{counup&& <CountUp start={0} end={1200}/>}</p>
             <p className="capitalize">Orders</p>
           </div>
         </div>
         <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  ">
-          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 ">
+          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 text-white" style={{
+        background:
+          "radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)",
+      }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -35,12 +46,15 @@ const Customers = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center align-middle">
-            <p className="text-3xl font-semibold leadi">7500</p>
+            <p className="text-3xl font-semibold leadi">{counup&& <CountUp start={0} end={7500}/>}</p>
             <p className="capitalize">New customers</p>
           </div>
         </div>
         <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  ">
-          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 ">
+          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 text-white" style={{
+        background:
+          "radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)",
+      }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -56,12 +70,15 @@ const Customers = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center align-middle">
-            <p className="text-3xl font-semibold leadi">172%</p>
+            <p className="text-3xl font-semibold leadi">{counup&& <CountUp start={0} end={172}/>}%</p>
             <p className="capitalize">Growth</p>
           </div>
         </div>
         <div className="flex p-4 space-x-4 rounded-lg md:space-x-6  ">
-          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 ">
+          <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 text-white" style={{
+        background:
+          "radial-gradient(circle, rgb(27, 27, 27) 0%, rgb(243, 23, 23) 100%)",
+      }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -72,11 +89,12 @@ const Customers = () => {
             </svg>
           </div>
           <div className="flex flex-col justify-center align-middle">
-            <p className="text-3xl font-semibold leadi">17%</p>
+            <p className="text-3xl font-semibold leadi">{counup&& <CountUp start={0} end={20}/>}%</p>
             <p className="capitalize">Bounce rate</p>
           </div>
         </div>
       </div>
+      </ScrollTrigger>
     </section>
   );
 };
